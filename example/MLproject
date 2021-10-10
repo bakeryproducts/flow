@@ -1,0 +1,10 @@
+# sklearn_elasticnet_wine/MLproject
+
+name: test_flow
+
+docker_env:
+  image: flow_test_image
+
+entry_points:
+  main:
+    command: "python run_test.py"
