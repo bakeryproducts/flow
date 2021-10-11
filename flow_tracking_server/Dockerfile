@@ -6,5 +6,3 @@ WORKDIR /flow_track
 COPY src/run.sh .
 
 ENTRYPOINT ["/flow_track/run.sh"]
-
-

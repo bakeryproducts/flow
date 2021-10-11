@@ -1,0 +1,34 @@
+
+services:
+    web:
+        restart: "no"
+        build: ./flow_tracking_server
+        image: flow_server
+        container_name: flow_server
+        expose:
+            - "${FLOW_SERVER_PORT}"
+        environment:
+            - STORE_PATH=${STORE_PATH}
+            - ARTIFACT_PATH=${ARTIFACT_PATH}
+            - FLOW_SERVER_PORT=${FLOW_SERVER_PORT}
+        networks:
+            - frontend
+            - backend
+            - storage
+        volumes:
+            - flow_storage:${STORE_PATH}
+            - flow_artifacts:${ARTIFACT_PATH}
+        command: src/run.sh
+
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
+    storage:
+        driver: bridge
+
+volumes:
+    flow_storage:
+    flow_artifacts:

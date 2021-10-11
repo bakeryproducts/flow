@@ -1,5 +1,5 @@
 #!/bin/bash
-PORT=5042
+PORT=5000
 STORE_PATH=/mnt/store
 ARTIFACT_PATH=/mnt/artifacts
 docker run \
