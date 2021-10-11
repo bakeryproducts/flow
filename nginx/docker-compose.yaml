@@ -1,0 +1,21 @@
+
+services:
+    nginx:
+        restart: "no"
+        build: ./nginx
+        image: mlflow_nginx
+        container_name: mlflow_nginx
+        ports:
+            - "5042:80"
+        networks:
+            - frontend
+            - storage
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
+    storage:
+        driver: bridge
+
