@@ -1,0 +1,33 @@
+
+services:
+    project:
+        restart: "no"
+        build: 
+          context: ./example
+          dockerfile: Dockerfile
+        image: example_image
+        container_name: example_cont 
+        expose:
+            - "${FLOW_SERVER_PORT}"
+        environment:
+            - STORE_PATH=${STORE_PATH}
+            - ARTIFACT_PATH=${ARTIFACT_PATH}
+            - FLOW_SERVER_PORT=${FLOW_SERVER_PORT}
+        networks:
+            - frontend
+            - backend
+            - storage
+        volumes:
+            - ./example:/example
+            - flow_storage:${STORE_PATH}
+            - flow_artifacts:${ARTIFACT_PATH}
+        command: sleep infinity
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
+    storage:
+        driver: bridge
+
